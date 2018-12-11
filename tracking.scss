@@ -1,0 +1,61 @@
+
+///////////////////////////
+///// Matomo Overlay //////
+///////////////////////////
+
+$grey-light: #E1E0E0;
+$blue-dark: #2C3038;
+
+$screen-xs: 798px;
+$screen-sm: 1022px;
+$screen-md: 1278px;
+
+#optout-form {
+  position: fixed;
+  bottom: 0%;
+  left: 0%;
+  width: 100%;
+  padding: 0 15%;
+  background-color: $blue-dark;
+  z-index: 1001;
+  display: none;
+  transition: opacity 0.3s ease 0s,display 0.3s linear 0s;
+  grid-template-columns: 90% 10%;
+  @media (max-width: $screen-sm) {
+    grid-template-columns: 90% 10%;
+  }
+  @media (max-width: $screen-xs) {
+    grid-template-columns: 90% 10%;
+  }
+  &.optout-show {
+  display: grid;
+}
+}
+
+#optout-contents {
+  grid-column: 1;
+  padding-top: 14px;
+}
+
+#optout-contents p {
+  color: $grey-light;
+  text-align: center;
+}
+
+#optout-close {
+  grid-column: 2;
+  color: $grey-light;
+}
+
+.close-button {
+  font-size: 1rem;
+  text-align: right;
+  padding: 14px 0 11px 24px;
+  margin-left: 16px;
+  cursor: pointer;
+  z-index: 1002;
+}
+
+
+// Note:
+// if your project doesn't use SCSS, you can replace the $variables with their values and copy/paste the text into your css file
