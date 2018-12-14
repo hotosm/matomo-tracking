@@ -1,85 +1,57 @@
 /* Add div content */
-var html = `
-<div id="optout-contents">
-  <p>This site uses Matomo to analyze traffic and help us improve your user experience. It is processing your IP address and stores cookies on your browser for 13 months. Those data are only processed by us and our web hosting platform. You may choose to opt of of this below. </p>
-  <p><a id="privlink" href="https://hotosm.org/privacy"> Learn more about our Privacy Policy</a></p>
-  <p>
-    <input type="checkbox" id="optout" />
-    <label for="optout"><strong></strong></label>
-  </p>
-</div>
-<div class="close-button" id="optout-close"><a>Close</a></div>
-`;
+var html = '<div id="optout-contents"> \
+  <p>This site uses Matomo to analyze traffic and help us improve your user experience. It is processing your IP address and stores cookies on your browser for 13 months. Those data are only processed by us and our web hosting platform. You may choose to opt of of this below. </p> \
+  <p><a id="privlink" href="https://hotosm.org/privacy"> Learn more about our Privacy Policy</a></p> \
+  <p> \
+    <input type="checkbox" id="optout" /> \
+    <label for="optout"><strong></strong></label> \
+  </p> \
+</div> \
+<div class="close-button" id="optout-close"><a>Close</a></div>';
 
-var css = `
-#optout-form {
-  position: fixed;
-  bottom: 0%;
-  left: 0%;
-  max-width: 100%;
-  padding: 0 15%;
-  background-color: #2C3038;
-  z-index: 1001;
-  display: none;
-  grid-template-columns: 90% 10%;
-}
-
-#optout-contents {
-  grid-column: 1;
-  padding-top: 14px;
-}
-
-#optout-form p {
-  color: #E1E0E0;
-  text-align: center;
-  margin-top: 0;
-}
-
-#optout-form a {
-  color: #d73f3f;
-  font-weight: 700;
-  text-decoration: none;
-}
-
-#optout-form a:hover {
-  color: #68c7dd;
-} 
-
-#optout-close {
-  grid-column: 2;
-  text-align: right;
-  padding: 14px 0 11px 24px;
-  margin-left: 16px;
-  cursor: pointer;
-  z-index: 1002;
-}
-
-`
-var style = document.createElement('style');
-
-if (style.styleSheet) {
-    style.styleSheet.cssText = css;
-} else {
-    style.appendChild(document.createTextNode(css));
-}
-
-document.getElementsByTagName('head')[0].appendChild(style);
-
-var form =  document.getElementById('optout-form');
-if (typeof(form) != 'undefined' && form != null)
-{
-  form.innerHTML = html;
-
-  var formContents = document.getElementById('optout-contents');
-  var formContentsP = formContents.getElementsByTagName("P");
-  var formClose = document.getElementById('optout-close');
-  var privLink = document.getElementById('privlink');
-  
-  if (!localStorage.getItem("optout-closed")) {
-    form.style.display = 'grid';
-  }
-
-}
+var css = ' \
+#optout-form { \
+  position: fixed; \
+  bottom: 0%; \
+  left: 0%; \
+  max-width: 100%; \
+  padding: 0 15%; \
+  background-color: #2C3038; \
+  z-index: 1001; \
+  display: none; \
+  grid-template-columns: 90% 10%; \
+} \
+ \
+#optout-contents { \
+  grid-column: 1; \
+  padding-top: 14px; \
+} \
+\
+#optout-form p { \
+  color: #E1E0E0; \
+  text-align: center; \
+  margin-top: 0; \
+  max-width: 100%; \
+} \
+ \
+#optout-form a { \
+  color: #d73f3f; \
+  font-weight: 700; \
+  text-decoration: none; \
+} \
+ \
+#optout-form a:hover { \
+  color: #68c7dd; \
+}  \
+\
+#optout-close { \
+  grid-column: 2; \
+  text-align: right; \
+  padding: 14px 0 11px 24px; \
+  margin-left: 16px; \
+  cursor: pointer; \
+  z-index: 1002; \
+} '
 
 // Matomo tracker
 var _paq = _paq || [];
@@ -106,6 +78,33 @@ _paq.push(['enableLinkTracking']);
 
 // Opt-out form
 document.addEventListener("DOMContentLoaded", function(event) {
+
+  var style = document.createElement('style');
+
+  if (style.styleSheet) {
+      style.styleSheet.cssText = css;
+  } else {
+      style.appendChild(document.createTextNode(css));
+  }
+
+  document.getElementsByTagName('head')[0].appendChild(style);
+
+  var form =  document.getElementById('optout-form');
+  if (typeof(form) != 'undefined' && form != null)
+  {
+    console.log("loading optout form");
+    form.innerHTML = html;
+
+    var formContents = document.getElementById('optout-contents');
+    var formContentsP = formContents.getElementsByTagName("P");
+    var formClose = document.getElementById('optout-close');
+    var privLink = document.getElementById('privlink');
+    
+    if (!localStorage.getItem("optout-closed")) {
+      form.style.display = 'grid';
+    }
+
+  }
   
   function setOptOutText(element) {
     _paq.push([function() {
