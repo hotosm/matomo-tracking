@@ -8,7 +8,7 @@ var html = `
     <label for="optout"><strong></strong></label>
   </p>
 </div>
-<div class="close-button" id="optout-close">Close</div>
+<div class="close-button" id="optout-close"><a>Close</a></div>
 `;
 
 var css = `
@@ -29,24 +29,24 @@ var css = `
   padding-top: 14px;
 }
 
-#optout-contents p {
+#optout-form p {
   color: #E1E0E0;
   text-align: center;
+  margin-top: 0;
 }
 
-#optout-contents p a {
+#optout-form a {
   color: #d73f3f;
   font-weight: 700;
+  text-decoration: none;
 }
 
-#optout-contents p a:hover {
+#optout-form a:hover {
   color: #68c7dd;
 } 
 
 #optout-close {
   grid-column: 2;
-  color: #E1E0E0;
-  font-size: 1rem;
   text-align: right;
   padding: 14px 0 11px 24px;
   margin-left: 16px;
