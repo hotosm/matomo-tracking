@@ -4,14 +4,11 @@ This repo contains the code necessary to add the Matomo Opt-in form we use acros
 
 ### Using this code
 
-You may need to adapt this to make it work on different projects, but for the most part the process is straightforward:
-
-1. Add the following html to your home page: 
+You may need to adapt this to make it work on different projects, but for the most part the process is straightforward. Simply add the following html to your home page: 
 ```
 <div id="optout-form"></div>
 <script type="application/javascript" src="js/tracking.js"></script>
  ```
-4. 
 
 For questions, please drop into the [HOTOSM slack](https://slack.hotosm.org/)
 
