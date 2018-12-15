@@ -51,7 +51,7 @@ var css = ' \
   margin-left: 16px; \
   cursor: pointer; \
   z-index: 1002; \
-} '
+} ';
 
 // Matomo tracker
 var _paq = _paq || [];
