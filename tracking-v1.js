@@ -2,12 +2,8 @@
 var html = '<div id="optout-contents"> \
   <p>This site uses Matomo to analyze traffic and help us improve your user experience. It is processing your IP address and stores cookies on your browser for 13 months. Those data are only processed by us and our web hosting platform. You may choose to opt of of this below. </p> \
   <p><a id="privlink" href="https://hotosm.org/privacy"> Learn more about our Privacy Policy</a></p> \
-  <p> \
-    <input type="checkbox" id="optout" /> \
-    <label for="optout"><strong></strong></label> \
-  </p> \
-</div> \
-<div class="close-button" id="optout-close"><a>Close</a></div>';
+    <div id="optout-buttons"><div class="optout-button" id="optout-disagree">Do not agree</div>   <div class="optout-button" id="optout-agree">Agree</div></div> \
+</div>';
 
 var css = ' \
 #optout-form { \
@@ -19,18 +15,16 @@ var css = ' \
   background-color: #2C3038; \
   z-index: 1001; \
   display: none; \
-  grid-template-columns: 90% 10%; \
 } \
  \
 #optout-contents { \
-  grid-column: 1; \
   padding-top: 14px; \
 } \
 \
 #optout-form p { \
   color: #E1E0E0; \
   text-align: center; \
-  margin-top: 0; \
+  margin: 0.5em; \
   max-width: 100%; \
 } \
  \
@@ -44,14 +38,35 @@ var css = ' \
   color: #68c7dd; \
 }  \
 \
-#optout-close { \
+#optout-buttons { \
   grid-column: 2; \
-  text-align: right; \
-  padding: 14px 0 11px 24px; \
-  margin-left: 16px; \
+  text-align: center; \
+  padding-bottom: 14px; \
   cursor: pointer; \
   z-index: 1002; \
-} ';
+} \
+\
+.optout-button, .optout-button:visited {\
+  -webkit-border-radius: 4px;\
+  -moz-border-radius: 4px;\
+  border-radius: 4px;\
+  background-color: #d73f3f;\
+  padding: .3em 2.5em;\
+  color: #E1E0E0;\
+  text-transform: uppercase;\
+  display: inline-block;\
+  font-weight: 600;\
+  border: 2px solid #d73f3f;\
+}\
+\
+.optout-button:hover, .optout-button:visited:hover {\
+  transition: all 0.3s ease 0s;\
+  -webkit-transition: all 0.3s;\
+  -moz-transition: all 0.3s;\
+  color: #d73f3f;\
+  background-color: inherit;\
+  border: 2px solid #d73f3f;\
+}';
 
 // Matomo tracker
 var _paq = _paq || [];
@@ -105,30 +120,27 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
 
   }
-  
-  function setOptOutText(element) {
-    _paq.push([function() {
-      element.checked = !this.isUserOptedOut();
-      document.querySelector('label[for=optout] strong').innerText = this.isUserOptedOut()
-        ? 'You are currently opted out. Click here to opt in.'
-        : 'You are currently opted in. Click here to opt out.';
-    }]);
-  }
 
-  var optOut = document.getElementById("optout");
-  optOut.addEventListener("click", function() {
-    if (this.checked) {
-      _paq.push(['forgetUserOptOut']);
-    } else {
-      _paq.push(['optUserOut']);
-    }
-    setOptOutText(optOut);
-  });
-
-  setOptOutText(optOut);
-
-  document.getElementById('optout-close').onclick = function() {
+  function closeForm() {
     form.style.display = 'none';
     localStorage.setItem("optout-closed", "true");
+  }
+
+  function setAgree() {
+    _paq.push(['setConsentGiven']);
+    closeForm();
+  }
+
+  function setDisagree() {
+    _paq.push(['forgetConsentGiven']);
+    closeForm();
+  }
+
+  document.getElementById('optout-agree').onclick = function() {
+    setAgree();
+  };
+
+  document.getElementById('optout-disagree').onclick = function() {
+    setDisagree();
   };
 });
