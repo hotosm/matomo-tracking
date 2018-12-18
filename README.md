@@ -12,9 +12,9 @@ You may need to adapt this to make it work on different projects, but for the mo
 
 For questions, please drop into the [HOTOSM slack](https://slack.hotosm.org/)
 
+### Versioning
 
-Todo: 
-- turn this into a CDN:
-  - use CI to sync with S3
-  - Add Cloudfront to S3
-  - Edit README
+Do not update versioned files, instead make a new file and increase the version. That way other sites won't break. 
+
+### To-do
+Add checks to circleci to prevent accidental updates to versioned files. 
