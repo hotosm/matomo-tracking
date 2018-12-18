@@ -1,5 +1,11 @@
 version: 2
 jobs:
+  build: 
+    working_directory: ~/circle-tmp-folder
+    steps:
+        - run:
+            name: Build
+            command: 'ls'
   deploy:
     machine:
       enabled: true
