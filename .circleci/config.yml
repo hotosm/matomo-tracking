@@ -1,6 +1,8 @@
 version: 2
 jobs:
-  build: 
+  build:
+    machine:
+      enabled: true
     working_directory: ~/circle-tmp-folder
     steps:
         - run:
@@ -14,3 +16,9 @@ jobs:
        - run:
           name: Deploy
           command: 'aws s3 sync ${source}/ s3://${bucket} --region us-east-2 --exclude "*" --include "*.js"'
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build
+      - deploy
