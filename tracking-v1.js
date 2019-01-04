@@ -1,8 +1,8 @@
 /* Add div content */
 var html = '<div id="optout-contents"> \
-  <p>This site uses Matomo to analyze traffic and help us improve your user experience. It is processing your IP address and stores cookies on your browser for 13 months. Those data are only processed by us and our web hosting platform. You may choose to opt of of this below. </p> \
-  <p><a id="privlink" href="https://hotosm.org/privacy"> Learn more about our Privacy Policy</a></p> \
-    <div id="optout-buttons"><div class="optout-button" id="optout-disagree">Do not agree</div>   <div class="optout-button" id="optout-agree">Agree</div></div> \
+  <p><a id="privlink" href="https://hotosm.org/privacy">About the information we collect</a></p> \
+  <p>We use cookies and similar technologies to recongnize and analyze your visits, and measure traffic usage and activity. You can learn about how we use the data about your visit or information you provide reading our <a href="https://hotosm.org/privacy">Privacy Policy</a>. By clicking "I Agree", you consent to the use of cookies.</p> \
+    <div id="optout-buttons"><div class="optout-button" id="optout-disagree">I do not agree</div>   <div class="optout-button" id="optout-agree">I agree</div></div> \
 </div>';
 
 var css = ' \
@@ -23,15 +23,15 @@ var css = ' \
 \
 #optout-form p { \
   color: #E1E0E0; \
-  text-align: center; \
   margin: 0.5em; \
   max-width: 100%; \
+  text-align: center; \
 } \
  \
 #optout-form a { \
   color: #d73f3f; \
   font-weight: 700; \
-  text-decoration: none; \
+  text-decoration: underline; \
 } \
  \
 #optout-form a:hover { \
@@ -41,7 +41,7 @@ var css = ' \
 #optout-buttons { \
   grid-column: 2; \
   text-align: center; \
-  padding-bottom: 14px; \
+  padding: 7px 0px 14px 0px; \
   cursor: pointer; \
   z-index: 1002; \
 } \
@@ -51,12 +51,14 @@ var css = ' \
   -moz-border-radius: 4px;\
   border-radius: 4px;\
   background-color: #d73f3f;\
-  padding: .3em 2.5em;\
+  padding: .5em .5em;\
   color: #E1E0E0;\
   text-transform: uppercase;\
   display: inline-block;\
   font-weight: 600;\
   border: 2px solid #d73f3f;\
+  width: 140px; \
+  font-size: 0.8em; \
 }\
 \
 .optout-button:hover, .optout-button:visited:hover {\
