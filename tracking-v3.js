@@ -16,7 +16,7 @@ var css = ' \
   z-index: 1001; \
   display: none; \
 } \
- \
+\
 #optout-contents { \
   padding-top: 14px; \
 } \
@@ -68,7 +68,24 @@ var css = ' \
   color: #d73f3f;\
   background-color: inherit;\
   border: 2px solid #d73f3f;\
-}';
+} \
+@media (max-width: 1022px) { \
+  #optout-form { \
+    padding: 7px 14px 0; \
+  } \
+  #optout-form p { \
+    font-size: 0.8em; \
+    margin: 0.1em; \
+  } \
+  #optout-contents { \
+    padding-top: 4px; \
+  } \
+  .optout-button, optout-button:visited { \
+    width: 100px; \
+    font-size: 0.6em; \
+  } \
+} \
+';
 
 var site_id = document.getElementById("optout-form").getAttribute("data-site-id"); 
 
