@@ -70,24 +70,19 @@ var css = ' \
   border: 2px solid #d73f3f;\
 }';
 
+var site_id = document.getElementById("optout-form").getAttribute("data-site-id"); 
+
 // Matomo tracker
 var _paq = _paq || [];
 /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
 _paq.push(['requireConsent']);
-_paq.push(["setDomains", ["*.hotosm.org","*.hot.openstreetmap.org","*.hot.osm.org"]]);
+_paq.push(["setDomains", ["*.hotosm.org"]]);
 _paq.push(['trackPageView']);
 _paq.push(['enableLinkTracking']);
 (function() {
   var u="https://matomo.hotosm.org/";
   _paq.push(['setTrackerUrl', u+'piwik.php']);
-  _paq.push(['setSiteId', '1']);
-
-  //old piwik tracker - if you need to keep tracking on the old site, uncomment and replace the Id with the correct one
-  //var secondaryTracker = "https://piwik.hotosm.org/piwik.php"
-  //var secondaryWebsiteId = 5;
-  // Also send all of the tracking data to this other Matomo server, in website ID 77
-  //_paq.push(['addTracker', secondaryTracker, secondaryWebsiteId]);
-  // End Piwik code
+  _paq.push(['setSiteId', site_id]);
 
   var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
   g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
@@ -146,12 +141,3 @@ document.addEventListener("DOMContentLoaded", function(event) {
     setDisagree();
   };
 });
-
-(function(h,o,t,j,a,r){
-    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-    h._hjSettings={hjid:1147905,hjsv:6};
-    a=o.getElementsByTagName('head')[0];
-    r=o.createElement('script');r.async=1;
-    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-    a.appendChild(r);
-})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
