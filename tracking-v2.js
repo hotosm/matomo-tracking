@@ -16,7 +16,7 @@ var css = ' \
   z-index: 1001; \
   display: none; \
 } \
- \
+\
 #optout-contents { \
   padding-top: 14px; \
 } \
@@ -68,26 +68,38 @@ var css = ' \
   color: #d73f3f;\
   background-color: inherit;\
   border: 2px solid #d73f3f;\
-}';
+} \
+@media (max-width: 1022px) { \
+  #optout-form { \
+    padding: 7px 14px 0; \
+  } \
+  #optout-form p { \
+    font-size: 0.8em; \
+    margin: 0.1em; \
+  } \
+  #optout-contents { \
+    padding-top: 4px; \
+  } \
+  .optout-button, optout-button:visited { \
+    width: 100px; \
+    font-size: 0.6em; \
+  } \
+} \
+';
+
+var site_id = window.site_id;
 
 // Matomo tracker
 var _paq = _paq || [];
 /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
 _paq.push(['requireConsent']);
-_paq.push(["setDomains", ["*.hotosm.org","*.hot.openstreetmap.org","*.hot.osm.org"]]);
+_paq.push(["setDomains", ["*.hotosm.org"]]);
 _paq.push(['trackPageView']);
 _paq.push(['enableLinkTracking']);
 (function() {
   var u="https://matomo.hotosm.org/";
   _paq.push(['setTrackerUrl', u+'piwik.php']);
-  _paq.push(['setSiteId', '1']);
-
-  //old piwik tracker - if you need to keep tracking on the old site, uncomment and replace the Id with the correct one
-  //var secondaryTracker = "https://piwik.hotosm.org/piwik.php"
-  //var secondaryWebsiteId = 5;
-  // Also send all of the tracking data to this other Matomo server, in website ID 77
-  //_paq.push(['addTracker', secondaryTracker, secondaryWebsiteId]);
-  // End Piwik code
+  _paq.push(['setSiteId', site_id]);
 
   var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
   g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
@@ -111,7 +123,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
   {
     console.log("loading optout form");
     form.innerHTML = html;
-
     var formContents = document.getElementById('optout-contents');
     var formContentsP = formContents.getElementsByTagName("P");
     var formClose = document.getElementById('optout-close');
@@ -121,6 +132,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
       form.style.display = 'grid';
     }
 
+    document.getElementById('optout-agree').onclick = function() {
+      setAgree();
+    };
+
+    document.getElementById('optout-disagree').onclick = function() {
+      setDisagree();
+    };
   }
 
   function closeForm() {
@@ -138,13 +156,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     closeForm();
   }
 
-  document.getElementById('optout-agree').onclick = function() {
-    setAgree();
-  };
-
-  document.getElementById('optout-disagree').onclick = function() {
-    setDisagree();
-  };
 });
 
 (function(h,o,t,j,a,r){
