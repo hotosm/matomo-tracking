@@ -1,7 +1,7 @@
 /* Add div content */
 var html = '<div id="optout-contents"> \
   <p><a id="privlink" href="https://hotosm.org/privacy">About the information we collect</a></p> \
-  <p>We use cookies and similar technologies to recongnize and analyze your visits, and measure traffic usage and activity. You can learn about how we use the data about your visit or information you provide reading our <a href="https://hotosm.org/privacy">Privacy Policy</a>. By clicking "I Agree", you consent to the use of cookies.</p> \
+  <p>We use cookies and similar technologies to recognize and analyze your visits, and measure traffic usage and activity. You can learn about how we use the data about your visit or information you provide reading our <a href="https://hotosm.org/privacy">Privacy Policy</a>. By clicking "I Agree", you consent to the use of cookies.</p> \
     <div id="optout-buttons"><div class="optout-button" id="optout-disagree">I do not agree</div>   <div class="optout-button" id="optout-agree">I agree</div></div> \
 </div>';
 
