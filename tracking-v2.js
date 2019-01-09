@@ -88,22 +88,27 @@ var css = ' \
 ';
 
 var site_id = window.site_id;
+if (typeof site_id !== 'undefined') {
+  // Matomo tracker
+  var _paq = _paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['requireConsent']);
+  _paq.push(["setDomains", ["*.hotosm.org"]]);
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://matomo.hotosm.org/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', site_id]);
 
-// Matomo tracker
-var _paq = _paq || [];
-/* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-_paq.push(['requireConsent']);
-_paq.push(["setDomains", ["*.hotosm.org"]]);
-_paq.push(['trackPageView']);
-_paq.push(['enableLinkTracking']);
-(function() {
-  var u="https://matomo.hotosm.org/";
-  _paq.push(['setTrackerUrl', u+'piwik.php']);
-  _paq.push(['setSiteId', site_id]);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+}
+else {
+  console.log("Error loading Matomo tracker, please set the site_id variable when you load the script.");
+}
 
-  var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-  g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-})();
 
 // Opt-out form
 document.addEventListener("DOMContentLoaded", function(event) {
