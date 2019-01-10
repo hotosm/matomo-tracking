@@ -114,6 +114,8 @@ else {
 document.addEventListener("DOMContentLoaded", function(event) {
 
   var style = document.createElement('style');
+  var hotjarConsent = false;
+  checkHotjarConsent();
 
   if (style.styleSheet) {
       style.styleSheet.cssText = css;
@@ -139,7 +141,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     document.getElementById('optout-agree').onclick = function() {
       setAgree();
-      hotjar(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     };
 
     document.getElementById('optout-disagree').onclick = function() {
@@ -155,12 +156,26 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   function setAgree() {
     _paq.push(['setConsentGiven']);
+    setHotjarConsent(true);
     closeForm();
   }
 
   function setDisagree() {
     _paq.push(['forgetConsentGiven']);
+    setHotjarConsent(false);
     closeForm();
+  }
+
+  function setHotjarConsent(consent) {
+    document.cookie = "hotjar=" + consent;
+    checkHotjarConsent();
+  }
+
+  function checkHotjarConsent() {
+    if (getCookie("hotjar") == "true") {
+      consent = true;
+      hotjar(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    }
   }
 
 });
@@ -174,3 +189,18 @@ function hotjar(h,o,t,j,a,r){
     a.appendChild(r);
 }
 
+function getCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
