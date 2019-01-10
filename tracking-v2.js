@@ -139,11 +139,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     document.getElementById('optout-agree').onclick = function() {
       setAgree();
+      hotjar(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     };
 
     document.getElementById('optout-disagree').onclick = function() {
       setDisagree();
     };
+
   }
 
   function closeForm() {
@@ -163,11 +165,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
 });
 
-(function(h,o,t,j,a,r){
+function hotjar(h,o,t,j,a,r){
     h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
     h._hjSettings={hjid:1147905,hjsv:6};
     a=o.getElementsByTagName('head')[0];
     r=o.createElement('script');r.async=1;
     r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
     a.appendChild(r);
-})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+}
+
