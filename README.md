@@ -11,7 +11,7 @@ You may need to adapt this to make it work on different projects, but for the mo
 
 And make sure this script shows up on every page you want to track, setting the siteid variable to the Matomo Site ID: 
 ```
-<script type="application/javascript">var siteid = "1"</script>
+<script type="application/javascript">var site_id = "1"</script>
 <script type="application/javascript" src="https://cdn.hotosm.org/tracking-v1.js"></script>
  ```
 
