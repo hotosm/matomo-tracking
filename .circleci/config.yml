@@ -16,6 +16,23 @@ jobs:
     steps:
         - checkout
         - run:
+            name: Configure AWS Access Key ID
+            command: |
+              aws configure set aws_access_key_id \
+              $AWS_ACCESS_KEY_ID \
+              --profile default
+        - run:
+            name: Configure AWS Secret Access Key
+            command: |
+              aws configure set aws_secret_access_key \
+              $AWS_SECRET_ACCESS_KEY \
+              --profile default
+        - run:
+            name: Configure AWS default region
+            command: |
+              aws configure set region $AWS_REGION \
+              --profile default
+        - run:
             name: Deploy
             command: 'aws s3 sync $(pwd)/ s3://hotosm-cdn --region us-east-2 --exclude "*" --include "*.js"'
 workflows:
