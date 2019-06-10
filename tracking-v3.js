@@ -93,7 +93,8 @@ var _paq = _paq || [];
 _paq.push(['requireConsent']);
 _paq.push(["setDomains", ["*.hotosm.org"]]);
 _paq.push(['trackPageView']);
-_paq.push(['enableLinkTracking']);
+_paq.push(['enableLinkTracking']);              // Tracks downloads
+_paq.push(['trackVisibleContentImpressions']);  // Tracks content blocks
 
 function embedTrackingCode() {
   var site_id = window.site_id;
