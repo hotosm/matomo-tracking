@@ -114,8 +114,6 @@ else {
 document.addEventListener("DOMContentLoaded", function(event) {
 
   var style = document.createElement('style');
-  var hotjarConsent = false;
-  checkHotjarConsent();
 
   if (style.styleSheet) {
       style.styleSheet.cssText = css;
@@ -166,41 +164,4 @@ document.addEventListener("DOMContentLoaded", function(event) {
     closeForm();
   }
 
-  function setHotjarConsent(consent) {
-    document.cookie = "hotjar=" + consent;
-    checkHotjarConsent();
-  }
-
-  function checkHotjarConsent() {
-    if (getCookie("hotjar") == "true") {
-      consent = true;
-      hotjar(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
-    }
-  }
-
 });
-
-function hotjar(h,o,t,j,a,r){
-    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-    h._hjSettings={hjid:1147905,hjsv:6};
-    a=o.getElementsByTagName('head')[0];
-    r=o.createElement('script');r.async=1;
-    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
-    a.appendChild(r);
-}
-
-function getCookie(cname) {
-  var name = cname + "=";
-  var decodedCookie = decodeURIComponent(document.cookie);
-  var ca = decodedCookie.split(';');
-  for(var i = 0; i <ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
-}
