@@ -154,13 +154,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   function setAgree() {
     _paq.push(['setConsentGiven']);
-    setHotjarConsent(true);
     closeForm();
   }
 
   function setDisagree() {
     _paq.push(['forgetConsentGiven']);
-    setHotjarConsent(false);
     closeForm();
   }
 
