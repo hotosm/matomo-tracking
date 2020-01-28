@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   }
 
   function setAgree() {
-    _paq.push(['setConsentGiven']);
+    _paq.push(['rememberConsentGiven']);
     closeForm();
   }
 
